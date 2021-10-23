@@ -1,54 +1,56 @@
 const movies = require('./movies')
 
-let years = {}
+
+// Cantidad de peliculas por cada año.
+let yrs = {}
 
 for (movie of movies){
-    let year_p = movie.Year
+    let movie_yr = movie.Year
 
-    if (years[year_p]) {
-        years[year_p]++
+    if (yrs[movie_yr]) {
+        yrs[movie_yr]++
     }
     else {
-        years[year_p] = 1
+        yrs[movie_yr] = 1
     }
 }
-// console.log(years)
+console.log(yrs)
 
-// Titulos
+// Titulos de las peliculas
 
-/*let titulos = []*/
+let titulo = []
 
-/*for (movie of movies){
-    titulos.push(movie.Title)
-}*/
+for (movie of movies){
+    titulo.push(movie.Title)
+}
 
-let titulos = movies.map(function (movie){return movie.Title})
+ titulo = movies.map(function (movie){return movie.Title})
 
-// console.log(titulos)
+console.log(titulo)
 
-//Imagenes
+// Cantidad de imagenes totales.
 
-let n_imagenes = 0
+let cantimagenes = 0
 let imagenes = []
 for (movie of movies){
     for (image of movie.Images){
         imagenes.push(image)
     }
 }
-/*console.log(imagenes)
-n_imagenes = imagenes.length
-console.log(n_imagenes)*/
 
-// Peliculas que no salieron
+cantimagenes = imagenes.length
+console.log(`Hay un total de ${cantimagenes} imagenes`)
 
-let n_comming_soon = 0
+// Peliculas en coming soon
+
+let cantcomingsoon = 0
 
 movies.forEach(function (movie){if (movie.ComingSoon){
-    n_comming_soon++
+    cantcomingsoon++
 }})
 
-// console.log(n_comming_soon)
+console.log(`Hay ${cantcomingsoon} peliculas en coming soon`)
 
-// Porcentaje no salieron
+// Porcentaje de peliculas que no salieron.
 
-console.log(n_comming_soon / movies.length * 100)
+console.log(`Haciendo un total de ${cantcomingsoon / movies.length * 100} por ciento de peliculas en coming soon.`)
